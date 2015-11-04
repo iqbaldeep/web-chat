@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+     h1=title
+        form#id_login.controls(action='/login', method='POST')   
+             | Username: 
+             input#name(name='username', style='width:350px;')
+             br
+             | Password: 
+             input#pwd(name='password', type='password' style='width:350px;')
+             br
+             input#loginbtn(type='submit', value="Login")
+             br
+             a#googlelogin(href='/googleauth') Login with Google
