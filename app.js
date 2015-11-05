@@ -49,7 +49,7 @@ app.get('/users', user.list);
 app.get('/', login.login);
 app.get('/login', login.login);
 //app.post('/login', login.loginPost); // this would login using local DB
-app.post('/login', login.loginWS); // this would login by making web-service call
+app.post('/login', login.loginWS); // this would login by making web-service call. committing
 app.get('/googleauth', googauth.getAccessToken);
 app.get('/oauth2callback', googauth.verifyToken);
 app.get('/logout', login.logout);

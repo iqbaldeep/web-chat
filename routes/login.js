@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-var chatDB = require("../db/dbConn");
+//var chatDB = require("../db/dbConn");
 var logger = require("../utils/logger");
 
 exports.login = function(req, res){
@@ -114,7 +114,7 @@ exports.loginWS = function(req, res){
 	
 };
 
-
+/*
 function authenticate(username, password, fn) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 	//TODO
 	var user = chatDB.loginUser(username, password, function(err, result){
@@ -136,4 +136,4 @@ function authenticate(username, password, fn) {
 		}
 	});                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 
-}
+}*/
