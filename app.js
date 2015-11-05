@@ -9,7 +9,6 @@ var express = require('express')
   , login = require('./routes/login')
   , http = require('http')
   , path = require('path')
-  , chatdb = require("./db/dbConn")
   , googauth = require("./routes/googauth")
   , logger = require("./utils/logger");
 
