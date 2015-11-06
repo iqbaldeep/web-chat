@@ -58,7 +58,19 @@ app.get('/test', function (req, res) {
 	});
 
 
-var io = require('socket.io').listen(app.listen(app.get('port')));
+var io = require('socket.io')
+	.listen(app.listen(app.get('port')))
+	.on('error', function(err)
+                {
+                  if (err.code === 'EADDRINUSE')
+                  {
+                    // port is currently in use
+                    console.log('server Open error:' + port);
+                    require('socket.io').listen(app.listen(3000));
+                    
+                  }
+                });
+
 console.log('Express server listening on port ' + app.get('port'));
 
 
