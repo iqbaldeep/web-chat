@@ -1,6 +1,4 @@
 ssh app@159.203.248.23 <<EOF
-whoami
-pwd
 ls -lrt
 cd ~/web-chat
 git pull
