@@ -54,7 +54,7 @@ app.get('/oauth2callback', googauth.verifyToken);
 app.get('/logout', login.logout);
 
 app.get('/test', function (req, res) {
-	  res.send('hello world');
+	  res.send('hello user');
 	});
 
 
