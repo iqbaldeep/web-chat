@@ -1,7 +1,6 @@
-ssh app@159.203.248.23 <<EOF
+ssh app@159.203.248.23
 cd ~/web-chat
 git pull
 npm install --production
 forever restartall
 exit
-EOF

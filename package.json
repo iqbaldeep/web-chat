@@ -15,6 +15,7 @@
   },
   "devDependencies": {
 	    "mocha": "latest",
-	    "supertest": "latest"
+	    "supertest": "latest",
+	    "forever": "latest",
 	  }
 }
