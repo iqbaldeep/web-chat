@@ -4,7 +4,7 @@
 var cred = {
 		CLIENT_ID:"878060532164-ov0kmvvdrnpaa2vo288hl901lnlm92qi.apps.googleusercontent.com",
 		CLIENT_SECRET:"f8GFRQIVsv7tgZQX_2YZECYQ",
-		REDIRECT_URL:"http://my.web-chat.com/oauth2callback"
+		REDIRECT_URL:"http://the-twenty-one.com/oauth2callback"
 };
 var logger = require("../utils/logger");
 
