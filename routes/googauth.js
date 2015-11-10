@@ -9,7 +9,7 @@ var cred = {
 var logger = require("../utils/logger");
 
 var google = require('googleapis');
-var OAuth2Client = google.auth.OAuth2; 
+var OAuth2Client = google.auth.OAuth2;
 var plus = google.plus('v1');
 
 var oauth2Client = new OAuth2Client(cred.CLIENT_ID, cred.CLIENT_SECRET, cred.REDIRECT_URL);
