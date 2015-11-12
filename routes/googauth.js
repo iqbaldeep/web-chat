@@ -1,7 +1,6 @@
 /**
  * handles google authentication
  */
-
 var cred = {
 		CLIENT_ID:"878060532164-ov0kmvvdrnpaa2vo288hl901lnlm92qi.apps.googleusercontent.com",
 		CLIENT_SECRET:"f8GFRQIVsv7tgZQX_2YZECYQ",
