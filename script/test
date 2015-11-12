@@ -1,2 +1,3 @@
 #!/bin/sh
-# ./node_modules/.bin/mocha ./test/test.js
+# commented as this stopped working as expected
+# ./node_modules/.bin/mocha ./test/test.js 
