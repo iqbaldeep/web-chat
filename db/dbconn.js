@@ -13,7 +13,7 @@ exports.findUser = function (data){
 	var MongoClient = mongodb.MongoClient;
 
 	// Connection URL. This is where your mongodb server is running.
-	var url = 'mongodb://localhost:27017/chat';
+	var url = 'mongodb://159.203.248.23:27017/chat';
 
 	// Use connect method to connect to the Server
 	MongoClient.connect(url, function (err, db) {
@@ -54,7 +54,7 @@ exports.loginUser = function (username, password, fn){
 	var MongoClient = mongodb.MongoClient;
 
 	// Connection URL. This is where your mongodb server is running.
-	var url = 'mongodb://localhost:27017/chat';
+	var url = 'mongodb://159.203.248.23:27017/chat';
 
 	// Use connect method to connect to the Server
 	MongoClient.connect(url, function (err, db) {
