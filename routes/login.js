@@ -58,12 +58,7 @@ exports.loginPost = function(req, res){
 /**
  * login by calling web-service
  */
-exports.loginWS = function(req, res){
-	logger.info("loging with info");
-	logger.log("info","loging with log info");
-	logger.error("error", "loging with log error");
-	
-	
+exports.loginWS = function(req, res){	
 	var request = JSON.stringify({
 		username:req.body.username,
 		password:req.body.password
@@ -84,16 +79,17 @@ exports.loginWS = function(req, res){
 	//  console.log("headers: ", res.headers);
 	 
 	    res.on('data', function(response) {
-	        logger.info('POST result:\n'+response);
+	        logger.info('POST result: '+response);
+	        var jsonResponse = JSON.parse(response);
 
-	        if(response.responseCode && response.responseCode == 100 && response.userInfo){
+	        if(jsonResponse.responseCode && jsonResponse.responseCode == 100 && jsonResponse.userInfo){
 	        	req.session.regenerate(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 					// Store the user's primary key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 					// in the session store to be retrieved,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 					// or in this case the entire user object                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-					req.session.user = response.userInfo;
-					req.session.user.displayName = response.userInfo.firstName;
-					req.session.success = 'Authenticated as ' + response.userInfo.firstNam                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+					req.session.user = jsonResponse.userInfo;
+					req.session.user.displayName = jsonResponse.userInfo.firstName;
+					req.session.success = 'Authenticated as ' + jsonResponse.userInfo.firstNam                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 					+ ' click to <a href="/logout">logout</a>. '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 					+ ' You may now access <a href="/restricted">/restricted</a>.';
 					logger.info("login complete with success");
@@ -115,7 +111,7 @@ exports.loginWS = function(req, res){
 	reqPost.write(request);
 	reqPost.end();
 	reqPost.on('error', function(e) {
-	    logger.error("error occured while writing response"+e);
+	    logger.error("error occured while making service call"+e);
 	});
 	
 };
