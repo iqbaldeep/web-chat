@@ -59,7 +59,7 @@ exports.loginPost = function(req, res){
  * login by calling web-service
  */
 exports.loginWS = function(req, res){
-	
+	logger.error("loginWS");
 	var request = JSON.stringify({
 		username:req.body.username,
 		password:req.body.password
