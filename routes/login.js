@@ -59,7 +59,11 @@ exports.loginPost = function(req, res){
  * login by calling web-service
  */
 exports.loginWS = function(req, res){
-	logger.error("loginWS");
+	logger.info("loging with info");
+	logger.log("info","loging with log info");
+	logger.error("error", "loging with log error");
+	
+	
 	var request = JSON.stringify({
 		username:req.body.username,
 		password:req.body.password
@@ -76,7 +80,6 @@ exports.loginWS = function(req, res){
 	// do the POST call
 	var reqPost = http.request(wsClient.getOptions('users','POST', postheaders), function(res) {
 		logger.error("statusCode: ", res.statusCode);
-	    console.log("statusCode: ", res.statusCode);
 	    // uncomment it for header details
 	//  console.log("headers: ", res.headers);
 	 
