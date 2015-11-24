@@ -75,6 +75,7 @@ exports.loginWS = function(req, res){
 	var wsClient = require('../wsclient/wsclient');
 	// do the POST call
 	var reqPost = http.request(wsClient.getOptions('users','POST', postheaders), function(res) {
+		logger.error("statusCode: ", res.statusCode);
 	    console.log("statusCode: ", res.statusCode);
 	    // uncomment it for header details
 	//  console.log("headers: ", res.headers);
