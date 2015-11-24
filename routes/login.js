@@ -79,14 +79,14 @@ exports.loginWS = function(req, res){
 	var wsClient = require('../wsclient/wsclient');
 	// do the POST call
 	var reqPost = http.request(wsClient.getOptions('users','POST', postheaders), function(res) {
-		logger.error("statusCode: ", res.statusCode);
+		logger.info("statusCode: ", res.statusCode);
 	    // uncomment it for header details
 	//  console.log("headers: ", res.headers);
 	 
 	    res.on('data', function(response) {
-	        console.info('POST result:\n'+response);
-	        console.info('\n\nPOST completed');
-	        if(response.responseCod && response.responseCode == 100 && response.userInfo){
+	        logger.info('POST result:\n'+response);
+
+	        if(response.responseCode && response.responseCode == 100 && response.userInfo){
 	        	req.session.regenerate(function(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 					// Store the user's primary key                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 					// in the session store to be retrieved,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
@@ -95,11 +95,12 @@ exports.loginWS = function(req, res){
 					req.session.user.displayName = response.userInfo.firstName;
 					req.session.success = 'Authenticated as ' + response.userInfo.firstNam                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 					+ ' click to <a href="/logout">logout</a>. '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-					+ ' You may now access <a href="/restricted">/restricted</a>.';                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+					+ ' You may now access <a href="/restricted">/restricted</a>.';
+					logger.info("login complete with success");
 					res.redirect('/chat');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 				});
 	        }else{
-                
+	        	logger.info("login failed");
 				req.session.error = 'Authentication failed, please check your '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 					+ ' username and password.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 					+ ' (use "tj" and "foobar")';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
@@ -110,10 +111,11 @@ exports.loginWS = function(req, res){
 	});
 	 
 	// write the json data
+	logger.info("response being returned: "+ request);
 	reqPost.write(request);
 	reqPost.end();
 	reqPost.on('error', function(e) {
-	    console.error(e);
+	    logger.error(e);
 	});
 	
 };
