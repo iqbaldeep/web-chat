@@ -111,11 +111,11 @@ exports.loginWS = function(req, res){
 	});
 	 
 	// write the json data
-	logger.info("response being returned: "+ request);
+	logger.info("request : "+ request);
 	reqPost.write(request);
 	reqPost.end();
 	reqPost.on('error', function(e) {
-	    logger.error(e);
+	    logger.error("error occured while writing response"+e);
 	});
 	
 };
