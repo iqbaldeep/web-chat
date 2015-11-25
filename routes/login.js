@@ -2,7 +2,7 @@
 /*
  * GET home page.
  */
-//var chatDB = require("../db/dbConn");
+//var chatDB = require("../db/dbConn"); //uncomment
 var logger = require("../utils/logger");
 
 exports.login = function(req, res){
