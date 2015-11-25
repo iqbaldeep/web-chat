@@ -58,7 +58,7 @@ exports.loginPost = function(req, res){
 /**
  * login by calling web-service
  */
-exports.loginWS = function(req, res){	
+exports.loginWS = function(req, mainResponse){	
 	var request = JSON.stringify({
 		username:req.body.username,
 		password:req.body.password
@@ -93,14 +93,14 @@ exports.loginWS = function(req, res){
 					+ ' click to <a href="/logout">logout</a>. '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
 					+ ' You may now access <a href="/restricted">/restricted</a>.';
 					logger.info("login complete with success");
-					res.redirect('/chat');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+					mainResponse.redirect('/chat');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 				});
 	        }else{
 	        	logger.info("login failed");
 				req.session.error = 'Authentication failed, please check your '                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 					+ ' username and password.'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 					+ ' (use "tj" and "foobar")';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-				res.render('login', { title: "Login - Username/password didn't match" });                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+				mainResponse.render('login', { title: "Login - Username/password didn't match" });                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 			
 	        }
 	    });
