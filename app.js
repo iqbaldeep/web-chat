@@ -59,22 +59,12 @@ app.get('/test', function (req, res) {
 
 
 var io = require('socket.io')
-	.listen(app.listen(app.get('port')))
-	.on('error', function(err)
-                {
-                  if (err.code === 'EADDRINUSE')
-                  {
-                    // port is currently in use
-                    console.log('server Open error:' + port);
-                    require('socket.io').listen(app.listen(3000));
-                    
-                  }
-                });
+	.listen(app.listen(app.get('port')));
 
 console.log('Express server listening on port ' + app.get('port'));
 
 
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
     socket.emit('message', { message: 'welcome to the chat' });
     socket.on('send', function (data) {
     	console.log("user received from frontend ="+data.username);
