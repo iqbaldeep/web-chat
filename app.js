@@ -10,7 +10,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , googauth = require("./routes/googauth")
-  , logger = require("./utils/logger");
+  , logger = require("./utils/logger")
+  , util = require('util');
 
 
 var app = express();
@@ -43,6 +44,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//all routing happens in the order in which they are mentioned here 
+app.all("*", function(req, res, next) {
+	//all common validations/authorization etc can be done in this method
+	//It is like a filter
+    // do logging
+//    logger.info('Request='+util.inspect((req)));
+    logger.info('Request='+req.originalUrl);
+ // make sure we go to the next routes and don't stop here. similar to request chaining in filters
+    next();
+});
+
 app.get('/chat', routes.index);
 app.get('/users', user.list);
 app.get('/', login.login);
@@ -68,7 +80,8 @@ io.on('connection', function (socket) {
 	logger.info("connection received->Sending back welcome note");
     socket.emit('message', { message: 'welcome to the chat' });
     socket.on('send', function (data) {
-    	console.log("user received from frontend ="+data.username);
+    	console.log("message received from client ="+data.username);
+    	logger.info("message received from client ="+data.username);
     		io.sockets.emit('message', data);
     });
 });
