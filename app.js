@@ -23,8 +23,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 //app.use(express.logger('dev'));
 
-logger.info("Overriding 'Express' logger");
-logger.info("logging in file");
+logger.debug("Overriding 'Express' logger");
+logger.debug("logging in file");
 
 
 //express middleware should handle all requests
@@ -65,6 +65,7 @@ console.log('Express server listening on port ' + app.get('port'));
 
 
 io.on('connection', function (socket) {
+	logger.debug("connection received->Sending back welcome note");
     socket.emit('message', { message: 'welcome to the chat' });
     socket.on('send', function (data) {
     	console.log("user received from frontend ="+data.username);
